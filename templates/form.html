@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="m-4">
+        <ul class="nav nav-pills" id="myTab">
+            <li class="nav-item">
+                <a href="#home" class="nav-link active">Добавить сотрудника</a>
+            </li>
+            <li class="nav-item">
+                <a href="#list" class="nav-link">Получить выборку</a>
+            </li>
+            <li class="nav-item">
+                <a href="#update_delete" class="nav-link">Удалить или изменить сотрудника</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="home">
+                <p class="mt-2">Добавить сотрудника</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form_create.as_p }}
+                    <button type="submit" name="form_type" value="create" class="btn btn-outline-primary">Добавить
+                    </button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="list">
+                <p class="mt-2">Получить выборку</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ filter_form.as_p }}
+                    <button type="submit" name="form_type" value="list" class="btn btn-outline-primary">Получить выборку
+                    </button>
+                </form>
+
+            </div>
+            <div class="tab-pane fade" id="update_delete">
+                <p class="mt-2">Удалить или изменить сотрудника</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ filter_delete_form.as_p }}
+                    <button type="submit" name="form_type" value="delete" class="btn btn-outline-primary">Удалить
+                    </button>
+                    <button type="submit" name="form_type" value="update" class="btn btn-outline-primary">Изменить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</form>

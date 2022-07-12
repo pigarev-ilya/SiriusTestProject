@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<table class="table indent_left-1">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Филиал</th>
+        <th scope="col">Должность</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">Зарплата</th>
+        <th scope="col">Дата приема на работу</th>
+        <th scope="col">Дата рождения</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in data %}
+    <tr>
+        <td>{{ object.internal_id }}</td>
+        <td>{{ object.branch }}</td>
+        <td>{{ object.position }}</td>
+        <td>{{ object.full_name }}</td>
+        <td>{{ object.salary }}</td>
+        <td>{{ object.employment_date.isoformat }}</td>
+        <td>{{ object.birth_date.isoformat }}</td>
+        <td><a href={% url 'employee-delete' object.id %}><button type="submit" class="btn btn-primary">Удалить</button></a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+    </tbody>
+</table>
+    <a href={% url 'home' %}>
+        <button type="submit" class="btn btn-outline-primary indent_left-1">На главную
+        </button>
+    </a>
+{% endblock %}

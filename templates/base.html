@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" type="text/css"
+          media="screen" rel="stylesheet">
+    <link rel="stylesheet" href={% static "/css/style.css" %}>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabList = [].slice.call(document.querySelectorAll("#myTab a"));
+            tabList.forEach(function (tab) {
+                const tabTrigger = new bootstrap.Tab(tab);
+
+                tab.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    tabTrigger.show();
+                });
+            });
+        });
+    </script>
+    <title>База сотрудников</title>
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="m-4">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link">Главная</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'employees-gs-report' %}" class="nav-link">Отправить отчет в Google Sheets</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'employees-report' %}" class="nav-link">Сохранить отчет в Excel</a>
+        </li>
+    </ul>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
+<script src="/static/django_select2/django_select2.js"></script>
+</html>
+

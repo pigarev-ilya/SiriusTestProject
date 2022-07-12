@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" class="indent_left-1">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-primary">Сохранить</button>
+</form>
+{% endblock %}
